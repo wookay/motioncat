@@ -10,7 +10,6 @@ Motion::Project::App.setup do |app|
     :headers_dir => "arccat"
   )
   app.info_plist['CFBundleURLTypes'] = [
-    { 'CFBundleURLName' => 'com.factor.MotionCat',
-	}
+    { 'CFBundleURLName' => 'com.factor.MotionCat', }
   ]
 end
