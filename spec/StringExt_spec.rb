@@ -18,5 +18,8 @@ describe 'StringExt' do
     assert_equal(3.14, "3.14f".to_float)
     assert_equal(3.14, "3.14".to_double)
     assert_equal(["a","b","c"], "a b c".split(" "))
+    assert_equal("", Empty)
+    assert_equal(" ", SPACE)
+    # assert_equal("\t", TABCHAR)
   end
 end

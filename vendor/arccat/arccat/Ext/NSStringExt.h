@@ -10,10 +10,9 @@
 #import "NSValueExt.h"
 
 #define Empty            @""
-#define EMPTY_STRING     @""
 #define SPACE            @" "
 #define LF               @"\n"
-#define TAB              @"\t"
+#define TABCHAR          @"\t"
 #define AMP              @"&"
 #define AT_SIGN          @"@"
 #define EQUAL            @"="

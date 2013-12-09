@@ -26,7 +26,7 @@ NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context)
 }
 
 -(NSString*) join {
-    return [self componentsJoinedByString:EMPTY_STRING];
+    return [self componentsJoinedByString:Empty];
 }
 
 -(BOOL) include:(id)obj {

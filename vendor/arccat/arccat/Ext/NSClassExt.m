@@ -68,7 +68,7 @@ NSString* TypeEncodingDescription(char* code) {
 			return @"union";
 		case _C_STRUCT_B:
 		case _C_STRUCT_E: {
-            NSString* structStr = [[[[SWF(@"%s", code) gsub:@"{_" to:EMPTY_STRING] gsub:OPENING_BRACE to:EMPTY_STRING] split:EQUAL] first];
+            NSString* structStr = [[[[SWF(@"%s", code) gsub:@"{_" to:Empty] gsub:OPENING_BRACE to:Empty] split:EQUAL] first];
             if ([QUESTION_MARK isEqualToString:structStr]) {
                 return @"struct";
             } else {

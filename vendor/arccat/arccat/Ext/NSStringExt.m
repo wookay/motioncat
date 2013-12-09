@@ -38,10 +38,10 @@ NSString* unichar_to_string(unichar ch) {
 }
 
 -(NSArray*) split:(NSString*)sep {
-    if ([EMPTY_STRING isEqualToString:self]) {
+    if ([Empty isEqualToString:self]) {
         return [NSArray array];
     }
-    if ([EMPTY_STRING isEqualToString:sep]) {
+    if ([Empty isEqualToString:sep]) {
         NSMutableArray* ary = [NSMutableArray array];
         for (int idx=0; idx<self.length; idx++) {
             NSRange range = NSMakeRange(idx, 1);
@@ -55,11 +55,11 @@ NSString* unichar_to_string(unichar ch) {
 }
 
 -(NSArray*) each_chars {
-	return [self split:EMPTY_STRING];
+	return [self split:Empty];
 }
 
 -(NSString*) reverse {
-    return [[[self split:EMPTY_STRING] reverse] join:EMPTY_STRING];
+    return [[[self split:Empty] reverse] join:Empty];
 }
 
 -(NSString*) slice:(int)loc :(int)length_ {
@@ -90,7 +90,7 @@ NSString* unichar_to_string(unichar ch) {
     for (int idx = 0; idx < times; idx++) {
         [ary addObject:self];
     }
-    return [ary componentsJoinedByString:EMPTY_STRING];
+    return [ary componentsJoinedByString:Empty];
 }
 
 -(int) to_int {
