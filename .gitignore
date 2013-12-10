@@ -1,3 +1,11 @@
 .DS_Store
 .repl_history
+Gemfile.lock
 build/
+project.xcworkspace/
+xcuserdata/
+.build/
+*.storyboardc/
+*.bridgesupport
+build-iPhoneOS/
+build-iPhoneSimulator/
