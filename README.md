@@ -8,4 +8,3 @@ mix arccat in RubyMotion
 
 # Console
 	(main)> Console.run
-              Console.m #042   Console started 192.168.0.16:8080
