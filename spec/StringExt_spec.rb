@@ -20,6 +20,7 @@ describe 'StringExt' do
     assert_equal(["a","b","c"], "a b c".split(" "))
     assert_equal("", Empty)
     assert_equal(" ", SPACE)
+    #assert_equal("\n", LF)
     # assert_equal("\t", TABCHAR)
   end
 end
