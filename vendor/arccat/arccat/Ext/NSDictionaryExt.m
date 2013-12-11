@@ -31,9 +31,9 @@
         } else {
             pair = @[key, [value description]];
         }
-        [ary addObject:[pair join:@": "]];
+        [ary addObject:[pair Join:@": "]];
     }
-    return [NSString stringWithFormat:@"{%@}", [ary join:COMMA_SPACE]];
+    return [NSString stringWithFormat:@"{%@}", [ary Join:COMMA_SPACE]];
 }
 
 -(NSArray*) to_array {

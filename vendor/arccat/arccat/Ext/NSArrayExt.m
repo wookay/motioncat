@@ -21,7 +21,7 @@ NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context)
     return [[self reverseObjectEnumerator] allObjects];
 }
 
--(NSString*) join:(NSString*)sep {
+-(NSString*) Join:(NSString*)sep {
     return [self componentsJoinedByString:sep];
 }
 
@@ -57,7 +57,7 @@ NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context)
             [ary addObject:[obj description]];
         }
     }
-    return [NSString stringWithFormat:@"[%@]", [ary join:COMMA_SPACE]];
+    return [NSString stringWithFormat:@"[%@]", [ary Join:COMMA_SPACE]];
 }
 
 -(id) first {

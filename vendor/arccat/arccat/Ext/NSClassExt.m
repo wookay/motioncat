@@ -68,7 +68,7 @@ NSString* TypeEncodingDescription(char* code) {
 			return @"union";
 		case _C_STRUCT_B:
 		case _C_STRUCT_E: {
-            NSString* structStr = [[[[SWF(@"%s", code) gsub:@"{_" to:Empty] gsub:OPENING_BRACE to:Empty] split:EQUAL] first];
+            NSString* structStr = [[[[SWF(@"%s", code) gsub:@"{_" to:Empty] gsub:OPENING_BRACE to:Empty] Split:EQUAL] first];
             if ([QUESTION_MARK isEqualToString:structStr]) {
                 return @"struct";
             } else {
@@ -103,7 +103,7 @@ NSString* TypeEncodingDescription(char* code) {
 		NSString* selName;
 		if (numberOfArguments > 0) {
 			NSMutableArray* selArray = [NSMutableArray array];
-			NSArray* selArgs = [selectorName split:COLON];
+			NSArray* selArgs = [selectorName Split:COLON];
 			for (unsigned int argIdx = 0; argIdx < numberOfArguments; argIdx++) {
 				NSString* argString = [selArgs objectAtIndex:argIdx];
 				char* argType = method_copyArgumentType(method, argIdx + ARGUMENT_OFFSET);
@@ -118,7 +118,7 @@ NSString* TypeEncodingDescription(char* code) {
 				}
 				[selArray addObject:SWF(@"%@:(%@)%@", argString, argTypeString, shortArgStr)];
 			}
-			selName = [selArray join:SPACE];
+			selName = [selArray Join:SPACE];
 		} else {
 			selName = selectorName;
 		}

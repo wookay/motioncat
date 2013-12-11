@@ -15,7 +15,7 @@ NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context)
 @interface NSArray (Ext)
 
 -(NSArray*) reverse ;
--(NSString*) join:(NSString*)sep ;
+-(NSString*) Join:(NSString*)sep ;
 -(NSString*) join ;
 -(NSString*) to_s ;
 -(BOOL) include:(id)obj ;

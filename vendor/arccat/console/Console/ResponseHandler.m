@@ -38,7 +38,7 @@
     } else {
         NSString* style = @"pre {font-family: courier; font-size: 15pt;} img {border:1px solid black;}";
         NSString* title = @"arccat Console";
-        NSString* head = SWF(@"<style type='text/css'>%@</style><title>%@</title>", style, title);
+        NSString* head = SWF(@"<meta http-equiv='Content-Type' content='text/html;charset=utf-8'><style type='text/css'>%@</style><title>%@</title>", style, title);
         NSString* html = SWF(@"<html><head>%@</head><body>%@</body></html>", head, Console.sharedInstance.targetToHTMLResponse);
 		return [[HTTPDataResponse alloc] initWithData:[html dataUsingEncoding:NSUTF8StringEncoding]];
 	}

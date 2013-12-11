@@ -37,7 +37,7 @@ NSString* unichar_to_string(unichar ch) {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
--(NSArray*) split:(NSString*)sep {
+-(NSArray*) Split:(NSString*)sep {
     if ([Empty isEqualToString:self]) {
         return [NSArray array];
     }
@@ -54,12 +54,12 @@ NSString* unichar_to_string(unichar ch) {
     }
 }
 
--(NSArray*) each_chars {
-	return [self split:Empty];
+-(NSArray*) each_char {
+	return [self Split:Empty];
 }
 
 -(NSString*) reverse {
-    return [[[self split:Empty] reverse] join:Empty];
+    return [[[self Split:Empty] reverse] Join:Empty];
 }
 
 -(NSString*) slice:(int)loc :(int)length_ {
