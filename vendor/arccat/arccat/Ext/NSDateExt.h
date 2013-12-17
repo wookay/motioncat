@@ -31,8 +31,12 @@ typedef enum {
 -(int) minute ;
 -(int) second ;
 -(int) weekday ;
--(NSString*) to_s ;
 -(NSDate*) tomorrow ;
 -(NSDate*) yesterday ;
 
+@end
+
+
+@interface NSDate (CapitalizedExt)
+-(NSString*) To_s ;
 @end

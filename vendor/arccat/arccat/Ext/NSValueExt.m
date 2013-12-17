@@ -91,7 +91,7 @@
                 } else if ([obj isKindOfClass:[NSNumber class]]) {
                     return [NSString stringWithFormat:@"@%@", [obj description]];
                 } else if ([obj isKindOfClass:[NSArray class]] || [obj isKindOfClass:[NSDictionary class]]) {
-                    return [obj to_s];
+                    return [obj To_s];
                 } else {
                     return [obj description];
                 }

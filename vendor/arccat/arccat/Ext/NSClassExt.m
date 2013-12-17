@@ -13,8 +13,8 @@
 
 
 
-NSString* TypeEncodingDescription(char* code) ;
-NSString* TypeEncodingDescription(char* code) {
+
+NSString* TypeEncodingDescription(const char* code) {
 	switch (code[0]) {
 		case _C_ID:
 			return @"id";
@@ -68,7 +68,7 @@ NSString* TypeEncodingDescription(char* code) {
 			return @"union";
 		case _C_STRUCT_B:
 		case _C_STRUCT_E: {
-            NSString* structStr = [[[[SWF(@"%s", code) gsub:@"{_" to:Empty] gsub:OPENING_BRACE to:Empty] Split:EQUAL] first];
+            NSString* structStr = [[[[SWF(@"%s", code) gsub:@"{_" to:Empty] gsub:OPENING_BRACE to:Empty] Split:EQUAL] First];
             if ([QUESTION_MARK isEqualToString:structStr]) {
                 return @"struct";
             } else {
@@ -132,7 +132,30 @@ NSString* TypeEncodingDescription(char* code) {
 	free(methods);
 	NSMutableArray* ret = [NSMutableArray array];
 	for (NSArray* pair in [ary sortedArrayUsingFunction:sortByFirstObjectComparator context:nil]) {
-		[ret addObject:SWF(@"%@ %@ ;", [[pair second] ljust:retStrMax], [pair first])];
+		[ret addObject:SWF(@"%@ %@ ;", [[pair second] Ljust:retStrMax], [pair First])];
+	}
+	return ret;
+}
+
++(NSArray*) propertiesForClass:(Class)targetClass {
+    NSMutableArray* ary = [NSMutableArray array];
+	unsigned int count = 0;
+    objc_property_t *properties = class_copyPropertyList((Class)targetClass, &count);
+    int typeStrMax = 0;
+    for(unsigned int idx = 0; idx < count; idx++ ) {
+        objc_property_t property = properties[idx];
+		const char* name = property_getName(property);
+		NSString* propertyName = SWF(@"%s", name);
+        const char* attr = property_getAttributes(property);
+        const char *argType = (const char*)&attr[1];
+        NSString* argTypeString = TypeEncodingDescription(argType);
+        [ary addObject:@[propertyName, argTypeString]];
+        typeStrMax = MAX(typeStrMax, argTypeString.length);
+	}
+	free(properties);
+    NSMutableArray* ret = [NSMutableArray array];
+	for (NSArray* pair in [ary sortedArrayUsingFunction:sortByFirstObjectComparator context:nil]) {
+		[ret addObject:SWF(@"%@ %@", [pair.second Ljust:typeStrMax], pair.First)];
 	}
 	return ret;
 }

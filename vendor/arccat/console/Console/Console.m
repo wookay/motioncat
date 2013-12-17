@@ -44,7 +44,8 @@
         log_info(@"Error starting HTTP server %@", error);
     }
     
-    _target = UIApplication.sharedApplication.delegate.window.rootViewController;
+    _target = nil;
+    //UIApplication.sharedApplication.delegate.window.rootViewController;
     _imageStore = [NSMutableDictionary dictionary];
 }
 

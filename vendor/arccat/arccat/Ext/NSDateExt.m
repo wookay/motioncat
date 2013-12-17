@@ -69,18 +69,24 @@ NSDate* NSDateFromString(NSString* str) {
     return comps.weekday;
 }
 
--(NSString*) to_s {
-    NSDateFormatter* formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [formatter stringFromDate:self];
-}
-
 -(NSDate*) tomorrow {
     return [self dateByAddingTimeInterval:ONE_DAY_SECONDS];
 }
 
 -(NSDate*) yesterday {
     return [self dateByAddingTimeInterval:-ONE_DAY_SECONDS];
+}
+
+@end
+
+
+
+@implementation NSDate (CapitalizedExt)
+
+-(NSString*) To_s {
+    NSDateFormatter* formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [formatter stringFromDate:self];
 }
 
 @end

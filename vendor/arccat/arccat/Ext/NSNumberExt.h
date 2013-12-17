@@ -20,6 +20,11 @@ int get_random(int div) ;
 -(NSNumber*) roundUp ;
 -(NSNumber*) ceiling ;
 -(NSNumber*) floorDown ;
--(NSString*) to_s ;
 
+@end
+
+
+
+@interface NSNumber (CapitalizedExt)
+-(NSString*) To_s ;
 @end

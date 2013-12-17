@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary (Ext)
-
--(NSArray*) keys ;
--(NSArray*) values ;
--(NSString*) to_s ;
 -(NSArray*) to_array ;
 -(BOOL) hasKey:(id)key ;
 -(id) keyForObject:(id)obj ;
--(id) fetch:(id)key ;
-
 @end
 
 
+@interface NSDictionary (CapitalizedExt)
+-(NSString*) To_s ;
+-(id) Fetch:(id)key ;
+-(NSArray*) Keys ;
+-(NSArray*) Values ;
+@end
 
 @interface NSMutableDictionary (Ext)
 

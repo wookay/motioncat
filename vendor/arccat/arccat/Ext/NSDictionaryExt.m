@@ -12,30 +12,6 @@
 
 @implementation NSDictionary (Ext)
 
--(NSArray*) keys {
-    return [self allKeys];
-}
-
--(NSArray*) values {
-    return [self allValues];
-}
-
--(NSString*) to_s {
-    NSMutableArray* ary = [NSMutableArray array];
-    SEL sel  = @selector(to_s);
-    for (id key in [self allKeys]) {
-        NSArray* pair;
-        id value = [self valueForKey:key];
-        if ([value respondsToSelector:sel]) {
-            pair = @[key, [value to_s]];
-        } else {
-            pair = @[key, [value description]];
-        }
-        [ary addObject:[pair Join:@": "]];
-    }
-    return [NSString stringWithFormat:@"{%@}", [ary Join:COMMA_SPACE]];
-}
-
 -(NSArray*) to_array {
     NSMutableArray* ary = [NSMutableArray array];
     for (id key in [self allKeys]) {
@@ -68,12 +44,41 @@
 	return nil;
 }
 
--(id) fetch:(id)key {
-    return [self objectForKey:key];
-}
-
 @end
 
+
+
+@implementation NSDictionary (CapitalizedExt)
+
+-(NSString*) To_s {
+    NSMutableArray* ary = [NSMutableArray array];
+    SEL sel  = @selector(To_s);
+    for (id key in [self allKeys]) {
+        NSArray* pair;
+        id value = [self valueForKey:key];
+        if ([value respondsToSelector:sel]) {
+            pair = @[key, [value To_s]];
+        } else {
+            pair = @[key, [value description]];
+        }
+        [ary addObject:[pair Join:@": "]];
+    }
+    return [NSString stringWithFormat:@"{%@}", [ary Join:COMMA_SPACE]];
+}
+
+-(id) Fetch:(id)key {
+    return [self objectForKey:key];
+}
+-(NSArray*) Keys {
+    return [self allKeys];
+}
+
+-(NSArray*) Values {
+    return [self allValues];
+}
+
+
+@end
 
 
 @implementation NSMutableDictionary (Ext)
@@ -98,3 +103,5 @@
 }
 
 @end
+
+

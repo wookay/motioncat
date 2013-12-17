@@ -60,10 +60,6 @@ NSString* unichar_to_string(unichar ch) ;
 
 @interface NSString (Ext)
 
--(NSString*) strip ;
--(NSArray*) Split:(NSString*)sep ;
--(NSArray*) each_char ;
--(NSString*) reverse ;
 -(NSString*) slice:(int)loc :(int)length_ ;
 -(NSString*) slice:(int)loc backward:(int)backward ;
 -(NSString*) gsub:(NSString*)str to:(NSString*)to ;
@@ -72,10 +68,16 @@ NSString* unichar_to_string(unichar ch) ;
 -(int) to_int ;
 -(float) to_float ;
 -(double) to_double ;
--(NSString*) to_s ;
--(NSString*) ljust:(int)justified ;
 -(unichar) to_unichar ;
 -(NSString*) stringAtIndex:(int)idx ;
--(BOOL) isEmptyString ;
+-(BOOL) isEmpty ;
+@end
 
+@interface NSString (CapitalizedExt)
+-(NSString*) To_s ;
+-(NSArray*) Split:(NSString*)sep ;
+-(NSArray*) Each_char ;
+-(NSString*) Ljust:(int)justified ;
+-(NSString*) Strip ;
+-(NSString*) Reverse ;
 @end

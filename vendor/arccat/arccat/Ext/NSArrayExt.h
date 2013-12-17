@@ -13,29 +13,28 @@
 NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context) ;
 
 @interface NSArray (Ext)
-
--(NSArray*) reverse ;
--(NSString*) Join:(NSString*)sep ;
--(NSString*) join ;
--(NSString*) to_s ;
 -(BOOL) include:(id)obj ;
 -(NSArray*) slice:(int)loc :(int)length_ ;
 -(NSArray*) slice:(int)loc backward:(int)backward ;
--(id) first ;
 -(id) second ;
 -(id) third ;
--(id) last ;
 -(NSArray*) append:(NSArray*)ary ;
 -(NSArray*) sort ;
-
 @end
 
 
+@interface NSArray (CapitalizedExt)
+-(NSString*) To_s ;
+-(NSString*) Join ;
+-(NSString*) Join:(NSString*)sep ;
+-(id) First ;
+-(id) Last ;
+-(NSArray*) Reverse ;
+@end
+
 
 @interface NSMutableArray (Ext)
-
 - (id) push:(id)obj ;
 - (id) pop ;
 -(void) clear ;
-
 @end

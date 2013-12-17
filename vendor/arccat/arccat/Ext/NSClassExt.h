@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+NSString* TypeEncodingDescription(const char* code) ;
+
+
 @interface NSClassExt : NSObject
 
 +(NSArray*) methodsForClass:(Class)targetClass ;
++(NSArray*) propertiesForClass:(Class)targetClass ;
 
 @end

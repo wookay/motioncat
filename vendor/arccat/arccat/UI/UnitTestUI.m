@@ -9,7 +9,7 @@
 #import "UnitTestUI.h"
 
 UIView* findViewInRootViewController(id rootViewController) {
-    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+    if ([rootViewController isKindOfClass:UITabBarController.class] || [rootViewController isKindOfClass:UINavigationController.class]) {
         return [[[rootViewController viewControllers] firstObject] view];
     } else {
         return [rootViewController view];

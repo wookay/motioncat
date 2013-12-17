@@ -10,24 +10,18 @@
 #import "NSStringExt.h"
 
 
-NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context) {
-    return [[uno first] compare:[dos first]];
+NSInteger sortByFirstObjectComparator(id uno, id dos, void* context) {
+    if ([uno isKindOfClass:NSArray.class]) {
+        return [[uno First] compare:[dos First]];
+    } else if ([uno isKindOfClass:NSString.class]) {
+        return [uno compare:dos];
+    } else {
+        return 0;
+    }
 }
 
 
 @implementation NSArray (Ext)
-
--(NSArray*) reverse {
-    return [[self reverseObjectEnumerator] allObjects];
-}
-
--(NSString*) Join:(NSString*)sep {
-    return [self componentsJoinedByString:sep];
-}
-
--(NSString*) join {
-    return [self componentsJoinedByString:Empty];
-}
 
 -(BOOL) include:(id)obj {
     return [self containsObject:obj];
@@ -47,33 +41,12 @@ NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context)
     return [self slice:loc :self.count + backward + 1];
 }
 
--(NSString*) to_s {
-    NSMutableArray* ary = [NSMutableArray array];
-    for (id obj in self) {
-        SEL sel  = @selector(to_s);
-        if ([obj respondsToSelector:sel]) {
-            [ary addObject:[obj to_s]];
-        } else {
-            [ary addObject:[obj description]];
-        }
-    }
-    return [NSString stringWithFormat:@"[%@]", [ary Join:COMMA_SPACE]];
-}
-
--(id) first {
-    return [self objectAtIndex:0];
-}
-
 -(id) second {
     return [self objectAtIndex:1];
 }
 
 -(id) third {
     return [self objectAtIndex:2];
-}
-
--(id) last {
-    return [self lastObject];
 }
 
 -(NSArray*) append:(NSArray*)ary {
@@ -84,6 +57,40 @@ NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context)
 	return [self sortedArrayUsingSelector:@selector(compare:)];
 }
 
+@end
+
+
+
+@implementation NSArray (CapitalizedExt)
+-(NSString*) To_s {
+    NSMutableArray* ary = [NSMutableArray array];
+    for (id obj in self) {
+        SEL sel  = @selector(To_s);
+        if ([obj respondsToSelector:sel]) {
+            [ary addObject:[obj To_s]];
+        } else {
+            [ary addObject:[obj description]];
+        }
+    }
+    return [NSString stringWithFormat:@"[%@]", [ary Join:COMMA_SPACE]];
+}
+-(NSString*) Join {
+    return [self componentsJoinedByString:Empty];
+}
+-(NSString*) Join:(NSString*)sep {
+    return [self componentsJoinedByString:sep];
+}
+
+-(id) First {
+    return [self objectAtIndex:0];
+}
+
+-(id) Last {
+    return [self lastObject];
+}
+-(NSArray*) Reverse {
+    return [[self reverseObjectEnumerator] allObjects];
+}
 @end
 
 
@@ -109,3 +116,4 @@ NSInteger sortByFirstObjectComparator(NSArray* uno, NSArray* dos, void* context)
 }
 
 @end
+

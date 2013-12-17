@@ -34,8 +34,11 @@ int get_random(int div) {
     return [NSNumber numberWithDouble:value];
 }
 
--(NSString*) to_s {
+@end
+
+
+@implementation NSNumber (CapitalizedExt)
+-(NSString*) To_s {
     return [self description];
 }
-
 @end

@@ -22,7 +22,7 @@ NSString* SWF(NSString* format, ...) {
 }
 
 NSArray* _w(NSString* str) {
-    return [[str strip] componentsSeparatedByString:SPACE];
+    return [[str Strip] componentsSeparatedByString:SPACE];
 }
 
 NSString* unichar_to_string(unichar ch) {
@@ -32,35 +32,6 @@ NSString* unichar_to_string(unichar ch) {
 
 
 @implementation NSString (Ext)
-
--(NSString*) strip {
-    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-}
-
--(NSArray*) Split:(NSString*)sep {
-    if ([Empty isEqualToString:self]) {
-        return [NSArray array];
-    }
-    if ([Empty isEqualToString:sep]) {
-        NSMutableArray* ary = [NSMutableArray array];
-        for (int idx=0; idx<self.length; idx++) {
-            NSRange range = NSMakeRange(idx, 1);
-            NSString* ch = [self substringWithRange:range];
-            [ary addObject:ch];
-        }
-        return ary;
-    } else {
-        return [self componentsSeparatedByString:sep];
-    }
-}
-
--(NSArray*) each_char {
-	return [self Split:Empty];
-}
-
--(NSString*) reverse {
-    return [[[self Split:Empty] reverse] Join:Empty];
-}
 
 -(NSString*) slice:(int)loc :(int)length_ {
     NSRange range;
@@ -105,19 +76,6 @@ NSString* unichar_to_string(unichar ch) {
     return [self doubleValue];
 }
 
--(NSString*) to_s {
-    return self;
-}
-
--(NSString*) ljust:(int)justified {
-    if (self.length < justified) {
-        NSString* padStr = SPACE;
-        return SWF(@"%@%@", self, [padStr repeat:justified - self.length]);
-    } else {
-        return self;
-    }
-}
-
 -(unichar) to_unichar {
 	return [self characterAtIndex:0];
 }
@@ -126,8 +84,54 @@ NSString* unichar_to_string(unichar ch) {
 	return [self substringWithRange:NSMakeRange(idx, 1)];
 }
 
--(BOOL) isEmptyString {
+-(BOOL) isEmpty {
     return [Empty isEqualToString:self];
+}
+@end
+
+
+
+@implementation NSString (CapitalizedExt)
+-(NSString*) To_s {
+    return self;
+}
+-(NSArray*) Split:(NSString*)sep {
+    if ([Empty isEqualToString:self]) {
+        return [NSArray array];
+    }
+    if ([Empty isEqualToString:sep]) {
+        NSMutableArray* ary = [NSMutableArray array];
+        for (int idx=0; idx<self.length; idx++) {
+            NSRange range = NSMakeRange(idx, 1);
+            NSString* ch = [self substringWithRange:range];
+            [ary addObject:ch];
+        }
+        return ary;
+    } else {
+        return [self componentsSeparatedByString:sep];
+    }
+}
+
+-(NSArray*) Each_char {
+	return [self Split:Empty];
+}
+
+-(NSString*) Ljust:(int)justified {
+    if (self.length < justified) {
+        NSString* padStr = SPACE;
+        return SWF(@"%@%@", self, [padStr repeat:justified - self.length]);
+    } else {
+        return self;
+    }
+}
+
+
+-(NSString*) Strip {
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+-(NSString*) Reverse {
+    return [[[self Split:Empty] Reverse] Join:Empty];
 }
 
 @end
