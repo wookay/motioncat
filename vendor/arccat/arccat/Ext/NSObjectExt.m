@@ -21,7 +21,7 @@
     return NSStringFromClass([self class]);
 }
 
--(NSArray*) methods {
+-(NSArray*) Methods {
     return [NSClassExt methodsForClass:[self class]];
 }
 
@@ -29,6 +29,44 @@
     Class klass = [self class];
     Class targetClass = object_getClass(klass);
     return [NSClassExt methodsForClass:targetClass];
+}
+
+-(NSArray*) getters {
+    NSMutableArray* ary = [NSMutableArray array];
+    int getterTypeMax = 0;
+    int getterNameMax = 0;
+    for (Class targetClass in @[self.class, self.superclass]) {
+        unsigned int count;
+        Method *methods = class_copyMethodList(targetClass, &count);
+        for (unsigned int idx = 0; idx < count; ++idx) {
+            Method setterMethod = methods[idx];
+            SEL setterSel = method_getName(setterMethod);
+            NSString* setterMethodName = NSStringFromSelector(setterSel);
+//            log_info(@"setterMethodName %@", setterMethodName);
+            if ([setterMethodName hasPrefix:@"set"] && (setterMethodName.length >= 5)) {
+                NSString* getterMethodName = SWF(@"%@%@",
+                                                 [[setterMethodName slice:3 :1] lowercaseString],
+                                                 [setterMethodName slice:4 :setterMethodName.length-5]);
+                SEL getterSel = NSSelectorFromString(getterMethodName);
+                if ([self respondsToSelector:getterSel]) {
+                    Method getterMethod = class_getInstanceMethod(targetClass, getterSel);
+//                    log_info(@"s %@ g %@", setterMethodName, getterMethodName);
+                    NSString* valueString = [self getValueStringForProperty:getterMethodName];
+                    char* getterType = method_copyReturnType(getterMethod);
+                    NSString* getterTypeString = TypeEncodingDescription(getterType);
+                    [ary addObject:@[getterMethodName, getterTypeString, valueString]];
+                    getterTypeMax = MAX(getterTypeMax, getterTypeString.length);
+                    getterNameMax = MAX(getterNameMax, getterMethodName.length);
+                }
+            }
+        }
+        free(methods);
+    }
+    NSMutableArray* ret = [NSMutableArray array];
+	for (NSArray* trio in [ary sortedArrayUsingFunction:sortByFirstObjectComparator context:nil]) {
+		[ret addObject:SWF(@"%@ %@ %@", [trio.second Ljust:getterTypeMax], [trio.First Ljust:getterNameMax], trio.third)];
+	}
+	return ret;
 }
 
 -(NSString*) getValueStringForProperty:(NSString*)propertyName {

@@ -12,8 +12,9 @@
 
 -(NSString*) className ;
 -(NSArray*) classMethods ;
--(NSArray*) methods ;
+-(NSArray*) Methods ;
 -(NSArray*) properties ;
 -(NSString*) getValueStringForProperty:(NSString*)propertyName ;
+-(NSArray*) getters ;
 
 @end

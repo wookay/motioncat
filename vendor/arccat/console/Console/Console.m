@@ -32,6 +32,21 @@
 
 @implementation Console
 
++(UIViewController*) root {
+    return UIApplication.sharedApplication.delegate.window.rootViewController;
+}
+
++(UIViewController*) top {
+    id rootVC = self.root;
+    if ([rootVC isKindOfClass:UITabBarController.class]) {
+        return [[rootVC viewControllers] First];
+    } else if ([rootVC isKindOfClass:UINavigationController.class]) {
+        return [rootVC topViewController];
+    } else {
+        return rootVC;
+    }
+}
+
 -(void) startServer:(NSUInteger)port {
     _httpServer = [[HTTPServer alloc] init];
     _httpServer.port = port;
@@ -44,8 +59,7 @@
         log_info(@"Error starting HTTP server %@", error);
     }
     
-    _target = nil;
-    //UIApplication.sharedApplication.delegate.window.rootViewController;
+    _target = Console.root;
     _imageStore = [NSMutableDictionary dictionary];
 }
 

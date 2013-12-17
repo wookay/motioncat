@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSMutableDictionary* imageStore;
 @property (nonatomic,strong) id target;
 @property (nonatomic,strong) HTTPServer *httpServer;
+
 -(NSString*) targetToHTMLResponse ;
 -(UIImage*) favicon ;
 -(UIImage*) pathToImage:(NSString*)path ;
@@ -23,5 +24,7 @@
 +(void) run ;
 +(void) run:(id)ui ;
 +(Console*) sharedInstance ;
++(UIViewController*) root ;
++(UIViewController*) top ;
 
 @end
