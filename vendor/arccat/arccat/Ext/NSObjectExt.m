@@ -34,7 +34,14 @@
 -(NSString*) getValueStringForProperty:(NSString*)propertyName {
     SEL sel = NSSelectorFromString(propertyName);
 	if (! [self respondsToSelector:sel]) {
-		return @"-";
+        SEL isSel = NSSelectorFromString(SWF(@"is%@%@",
+                                             [[propertyName slice:0 :1] uppercaseString],
+                                             [propertyName slice:1 backward:-1]));
+        if ([self respondsToSelector:isSel]) {
+            sel = isSel;
+        } else {
+            return @"-";
+        }
 	}
     NSMethodSignature* sig = [self methodSignatureForSelector:sel];
 	const char* aTypeDescription = [sig methodReturnType];
