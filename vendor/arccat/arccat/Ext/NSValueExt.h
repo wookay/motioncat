@@ -10,7 +10,7 @@
 
 
 
-@interface NSValue (Ext)
+@interface NSValue (ValueExt)
 
 +(id) valueWithAny:(const void *)value objCType:(const char *)type ;
 +(NSString*) stringWithAny:(const void *)value objCType:(const char *)type ;

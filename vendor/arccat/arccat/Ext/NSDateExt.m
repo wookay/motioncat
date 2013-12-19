@@ -36,37 +36,37 @@ NSDate* NSDateFromString(NSString* str) {
 
 -(int) year {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:self];
-    return comps.year;
+    return (int)comps.year;
 }
 
 -(int) month {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSMonthCalendarUnit fromDate:self];
-    return comps.month;
+    return (int)comps.month;
 }
 
 -(int) day {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self];
-    return comps.day;
+    return (int)comps.day;
 }
 
 -(int) hour {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:self];
-    return comps.hour;
+    return (int)comps.hour;
 }
 
 -(int) minute {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSMinuteCalendarUnit fromDate:self];
-    return comps.minute;
+    return (int)comps.minute;
 }
 
 -(int) second {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit fromDate:self];
-    return comps.second;
+    return (int)comps.second;
 }
 
 -(int) weekday {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:self];
-    return comps.weekday;
+    return (int)comps.weekday;
 }
 
 -(NSDate*) tomorrow {

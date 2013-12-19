@@ -127,7 +127,7 @@ NSString* TypeEncodingDescription(const char* code) {
 		free(returnType);
 		NSString* retStr = SWF(@"%@(%@)", class_isMetaClass(targetClass) ? @"+" : @"-", returnTypeString);
 		[ary addObject:@[selName, retStr]];
-		retStrMax = MAX(retStrMax, retStr.length);
+		retStrMax = MAX(retStrMax, (int)retStr.length);
 	}
 	free(methods);
 	NSMutableArray* ret = [NSMutableArray array];
@@ -150,7 +150,7 @@ NSString* TypeEncodingDescription(const char* code) {
         const char *argType = (const char*)&attr[1];
         NSString* argTypeString = TypeEncodingDescription(argType);
         [ary addObject:@[propertyName, argTypeString]];
-        typeStrMax = MAX(typeStrMax, argTypeString.length);
+        typeStrMax = MAX(typeStrMax, (int)argTypeString.length);
 	}
 	free(properties);
     NSMutableArray* ret = [NSMutableArray array];

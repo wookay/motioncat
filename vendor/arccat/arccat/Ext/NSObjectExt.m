@@ -46,7 +46,7 @@
             if ([setterMethodName hasPrefix:@"set"] && (setterMethodName.length >= 5)) {
                 NSString* getterMethodName = SWF(@"%@%@",
                                                  [[setterMethodName slice:3 :1] lowercaseString],
-                                                 [setterMethodName slice:4 :setterMethodName.length-5]);
+                                                 [setterMethodName slice:4 :(int)setterMethodName.length-5]);
                 SEL getterSel = NSSelectorFromString(getterMethodName);
                 if ([self respondsToSelector:getterSel]) {
                     Method getterMethod = class_getInstanceMethod(targetClass, getterSel);
@@ -55,8 +55,8 @@
                     char* getterType = method_copyReturnType(getterMethod);
                     NSString* getterTypeString = TypeEncodingDescription(getterType);
                     [ary addObject:@[getterMethodName, getterTypeString, valueString]];
-                    getterTypeMax = MAX(getterTypeMax, getterTypeString.length);
-                    getterNameMax = MAX(getterNameMax, getterMethodName.length);
+                    getterTypeMax = MAX(getterTypeMax, (int)getterTypeString.length);
+                    getterNameMax = MAX(getterNameMax, (int)getterMethodName.length);
                 }
             }
         }
@@ -167,8 +167,8 @@
             NSString* argTypeString = TypeEncodingDescription(argType);
             NSString* valueString = [self getValueStringForProperty:propertyName];
             [ary addObject:@[propertyName, argTypeString, valueString]];
-            typeStrMax = MAX(typeStrMax, argTypeString.length);
-            propertyNameMax = MAX(propertyNameMax, propertyName.length);
+            typeStrMax = MAX(typeStrMax, (int)argTypeString.length);
+            propertyNameMax = MAX(propertyNameMax, (int)propertyName.length);
         }
         free(properties);
     }

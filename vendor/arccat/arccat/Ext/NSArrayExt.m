@@ -38,7 +38,7 @@ NSInteger sortByFirstObjectComparator(id uno, id dos, void* context) {
 }
 
 -(NSArray*) slice:(int)loc backward:(int)backward {
-    return [self slice:loc :self.count + backward + 1];
+    return [self slice:loc :(int)self.count + backward + 1];
 }
 
 -(id) second {

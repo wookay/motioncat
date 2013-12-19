@@ -44,7 +44,7 @@ NSString* unichar_to_string(unichar ch) {
 }
 
 -(NSString*) slice:(int)loc backward:(int)backward {
-    return [self slice:loc :self.length + backward + 1];
+    return [self slice:loc :(int)self.length + backward + 1];
 }
 
 -(NSString*) gsub:(NSString*)str to:(NSString*)to {
@@ -119,7 +119,7 @@ NSString* unichar_to_string(unichar ch) {
 -(NSString*) Ljust:(int)justified {
     if (self.length < justified) {
         NSString* padStr = SPACE;
-        return SWF(@"%@%@", self, [padStr repeat:justified - self.length]);
+        return SWF(@"%@%@", self, [padStr repeat:justified - (int)self.length]);
     } else {
         return self;
     }
